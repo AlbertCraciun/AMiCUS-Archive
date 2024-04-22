@@ -2,8 +2,10 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.Privilege;
+import ro.amicus.archive.servicies.PrivilegeService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class PrivilegeController {
@@ -20,7 +22,7 @@ public class PrivilegeController {
     }
 
     @GetMapping("/privileges/{id}")
-    public Privilege getPrivilege(@PathVariable Long id) {
+    public Privilege getPrivilege(@PathVariable UUID id) {
         return privilegeService.getPrivilege(id);
     }
 

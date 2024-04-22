@@ -2,8 +2,10 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.Faculty;
+import ro.amicus.archive.servicies.FacultyService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class FacultyController {
@@ -20,7 +22,7 @@ public class FacultyController {
     }
 
     @GetMapping("/faculties/{id}")
-    public Faculty getFaculty(@PathVariable Long id) {
+    public Faculty getFaculty(@PathVariable UUID id) {
         return facultyService.getFaculty(id);
     }
 

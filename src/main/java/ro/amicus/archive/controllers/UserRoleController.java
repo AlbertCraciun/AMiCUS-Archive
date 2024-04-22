@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.UUID;
+
 @RestController
 public class UserRoleController {
 
@@ -21,7 +23,7 @@ public class UserRoleController {
     }
 
     @GetMapping("/user-roles/{id}")
-    public String getUserRoleById(@PathVariable Long id) {
+    public String getUserRoleById(@PathVariable UUID id) {
         return userRoleService.getUserRoleById(id);
     }
 

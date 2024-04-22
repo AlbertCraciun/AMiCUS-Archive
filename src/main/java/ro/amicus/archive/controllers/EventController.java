@@ -2,8 +2,10 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.Event;
+import ro.amicus.archive.servicies.EventService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class EventController {
@@ -20,7 +22,7 @@ public class EventController {
     }
 
     @GetMapping("/events/{id}")
-    public Event getEvent(@PathVariable Long id) {
+    public Event getEvent(@PathVariable UUID id) {
         return eventService.getEvent(id);
     }
 

@@ -5,6 +5,7 @@ import ro.amicus.archive.entities.Branch;
 import ro.amicus.archive.servicies.BranchService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class BranchController {
@@ -21,7 +22,7 @@ public class BranchController {
     }
 
     @GetMapping("/branches/{id}")
-    public Branch getBranch(@PathVariable Long id) {
+    public Branch getBranch(@PathVariable UUID id) {
         return branchService.getBranch(id);
     }
 

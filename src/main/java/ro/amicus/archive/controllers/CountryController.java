@@ -2,8 +2,10 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.Country;
+import ro.amicus.archive.servicies.CountryService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class CountryController {
@@ -20,7 +22,7 @@ public class CountryController {
     }
 
     @GetMapping("/countries/{id}")
-    public Country getCountry(@PathVariable Long id) {
+    public Country getCountry(@PathVariable UUID id) {
         return countryService.getCountry(id);
     }
 

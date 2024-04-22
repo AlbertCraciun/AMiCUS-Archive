@@ -2,8 +2,10 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.Project;
+import ro.amicus.archive.servicies.ProjectService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ProjectController {
@@ -20,7 +22,7 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/{id}")
-    public Project getProject(@PathVariable Long id) {
+    public Project getProject(@PathVariable UUID id) {
         return projectService.getProject(id);
     }
 

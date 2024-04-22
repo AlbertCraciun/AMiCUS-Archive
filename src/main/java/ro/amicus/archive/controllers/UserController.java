@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.User;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -19,9 +20,9 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @GetMapping("/users/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+    @GetMapping("/users/{name}")
+    public User getUser(@PathVariable String name) {
+        return userService.getUser(anme);
     }
 
     @PostMapping("/add-users")

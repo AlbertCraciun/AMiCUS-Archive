@@ -5,6 +5,7 @@ import ro.amicus.archive.entities.City;
 import ro.amicus.archive.servicies.CityService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class CityController {
@@ -21,7 +22,7 @@ public class CityController {
     }
 
     @GetMapping("/cities/{id}")
-    public City getCity(@PathVariable Long id) {
+    public City getCity(@PathVariable UUID id) {
         return cityService.getCity(id);
     }
 
