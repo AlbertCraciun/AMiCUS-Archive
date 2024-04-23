@@ -2,31 +2,33 @@ package ro.amicus.archive.servicies;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ro.amicus.archive.entities.Branch;
+import ro.amicus.archive.dtos.BranchDTO;
+import ro.amicus.archive.mappers.BranchMapper;
 import ro.amicus.archive.repositories.BranchRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
 public class BranchService {
 
     private final BranchRepository branchRepository;
+    private final BranchMapper branchMapper;
 
-    public BranchService(BranchRepository branchRepository) {
+    public BranchService(BranchRepository branchRepository, BranchMapper branchMapper) {
         this.branchRepository = branchRepository;
+        this.branchMapper = branchMapper;
     }
 
-    public List<Branch> getBranches() {
-        return branchRepository.findAll();
+    public List<BranchDTO> getBranches() {
+        return branchMapper.brachListToBranchDTOList(branchRepository.findAll());
     }
 
-    public Branch getBranch(UUID id) {
-        return branchRepository.findById(id).orElse(null);
+    public BranchDTO getBranch(String name) {
+        return branchMapper.brachToBranchDTO(branchRepository.findByCity_CityName(name));
     }
 
-    public Branch addBranch(Branch branch) {
-        return branchRepository.save(branch);
+    public void addBranch(BranchDTO branchDTO) {
+        branchRepository.save(branchMapper.branchDTOToBranch(branchDTO));
     }
 }

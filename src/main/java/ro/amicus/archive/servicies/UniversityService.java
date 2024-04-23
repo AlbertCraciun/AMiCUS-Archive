@@ -2,8 +2,8 @@ package ro.amicus.archive.servicies;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ro.amicus.archive.repositories.UniversityRepository;
 import ro.amicus.archive.entities.University;
+import ro.amicus.archive.repositories.UniversityRepository;
 
 import java.util.List;
 import java.util.UUID;

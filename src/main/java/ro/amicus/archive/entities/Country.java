@@ -32,5 +32,6 @@ public class Country {
     @Column(name = "created_on", nullable = false)
     @CreationTimestamp
     private Timestamp createdOn;
+
 }
 

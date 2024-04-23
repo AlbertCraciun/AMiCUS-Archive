@@ -1,11 +1,10 @@
 package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.City;
+import ro.amicus.archive.dtos.CityDTO;
 import ro.amicus.archive.servicies.CityService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class CityController {
@@ -17,18 +16,18 @@ public class CityController {
     }
 
     @GetMapping("/cities")
-    public List<City> getCities() {
+    public List<CityDTO> getCities() {
         return cityService.getCities();
     }
 
-    @GetMapping("/cities/{id}")
-    public City getCity(@PathVariable UUID id) {
-        return cityService.getCity(id);
+    @GetMapping("/cities/{name}")
+    public CityDTO getCity(@PathVariable String name) {
+        return cityService.getCity(name);
     }
 
     @PostMapping("/add-cities")
-    public City addCity(@RequestBody City city) {
-        return cityService.addCity(city);
+    public void addCity(@RequestBody CityDTO cityDTO) {
+        cityService.addCity(cityDTO);
     }
 
 }

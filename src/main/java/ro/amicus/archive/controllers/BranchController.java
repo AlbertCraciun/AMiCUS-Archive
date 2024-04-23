@@ -1,11 +1,11 @@
 package ro.amicus.archive.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Branch;
+import ro.amicus.archive.dtos.BranchDTO;
 import ro.amicus.archive.servicies.BranchService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class BranchController {
@@ -17,18 +17,21 @@ public class BranchController {
     }
 
     @GetMapping("/branches")
-    public List<Branch> getBranches() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<BranchDTO> getBranches() {
         return branchService.getBranches();
     }
 
-    @GetMapping("/branches/{id}")
-    public Branch getBranch(@PathVariable UUID id) {
-        return branchService.getBranch(id);
+    @GetMapping("/branches/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public BranchDTO getBranch(@PathVariable String name) {
+        return branchService.getBranch(name);
     }
 
     @PostMapping("/add-branches")
-    public Branch addBranch(@RequestBody Branch branch) {
-        return branchService.addBranch(branch);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addBranch(@RequestBody BranchDTO branchDTO) {
+        branchService.addBranch(branchDTO);
     }
 
 }

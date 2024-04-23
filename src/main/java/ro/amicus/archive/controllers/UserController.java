@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import ro.amicus.archive.entities.User;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class UserController {

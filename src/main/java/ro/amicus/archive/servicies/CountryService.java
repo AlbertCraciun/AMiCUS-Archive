@@ -18,16 +18,18 @@ public class CountryService {
         this.countryRepository = countryRepository;
     }
 
-    public List<Country> getCountries() {
-        return countryRepository.findAll();
+    public List<String> getCountries() {
+        return countryRepository.findAll().stream().map(Country::getCountryName).toList();
     }
 
-    public Country getCountry(UUID id) {
-        return countryRepository.findById(id).orElse(null);
+    public String getCountry(String name) {
+        return countryRepository.findByCountryName(name).getCountryName();
     }
 
-    public Country addCountry(Country country) {
-        return countryRepository.save(country);
+    public void addCountry(String countryName) {
+        Country country = new Country();
+        country.setCountryName(countryName);
+        countryRepository.save(country);
     }
 
 }

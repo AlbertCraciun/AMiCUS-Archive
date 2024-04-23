@@ -2,32 +2,34 @@ package ro.amicus.archive.servicies;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ro.amicus.archive.entities.City;
+import ro.amicus.archive.dtos.CityDTO;
+import ro.amicus.archive.mappers.CityMapper;
 import ro.amicus.archive.repositories.CityRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
 public class CityService {
 
     private final CityRepository cityRepository;
+    private final CityMapper cityMapper;
 
-    public CityService(CityRepository cityRepository) {
+    public CityService(CityRepository cityRepository, CityMapper cityMapper) {
         this.cityRepository = cityRepository;
+        this.cityMapper = cityMapper;
     }
 
-    public List<City> getCities() {
-        return cityRepository.findAll();
+    public List<CityDTO> getCities() {
+        return cityMapper.cityListToCityDTOList(cityRepository.findAll());
     }
 
-    public City getCity(UUID id) {
-        return cityRepository.findById(id).orElse(null);
+    public CityDTO getCity(String name) {
+        return cityMapper.cityToCityDTO(cityRepository.findByCityName(name));
     }
 
-    public City addCity(City city) {
-        return cityRepository.save(city);
+    public void addCity(CityDTO cityDTO) {
+        cityRepository.save(cityMapper.cityDTOToCity(cityDTO));
     }
 
 }

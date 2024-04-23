@@ -1,9 +1,10 @@
 package ro.amicus.archive.entities;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.UUID;
 
