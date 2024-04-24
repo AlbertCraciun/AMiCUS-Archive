@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDTO {
+public class UserRoleDTO {
 
-    private String cityName;
-    private String countryName;
+    private String roleName;
+    private String privilegeName;
+    private String departmentName;
 
 }

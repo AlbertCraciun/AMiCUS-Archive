@@ -2,11 +2,9 @@ package ro.amicus.archive.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Country;
 import ro.amicus.archive.servicies.CountryService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class CountryController {

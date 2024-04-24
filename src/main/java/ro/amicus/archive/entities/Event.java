@@ -3,7 +3,9 @@ package ro.amicus.archive.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 import ro.amicus.archive.enums.EventTypes;
 
 import java.sql.Timestamp;
@@ -42,9 +44,14 @@ public class Event {
     @Column(name = "participants")
     private Integer participants;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "last_update_on")
+    @UpdateTimestamp
     private Timestamp lastUpdateOn;
 
     @Column(name = "created_on", nullable = false)
+    @CreationTimestamp
     private Timestamp createdOn;
 }

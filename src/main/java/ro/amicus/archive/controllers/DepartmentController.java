@@ -1,11 +1,9 @@
 package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Department;
 import ro.amicus.archive.servicies.DepartmentService;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @RestController
@@ -18,18 +16,18 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments")
-    public List<Department> getDepartments() {
+    public List<String> getDepartments() {
         return departmentService.getDepartments();
     }
 
     @GetMapping("/departments/{id}")
-    public Department getDepartment(@PathVariable UUID id) {
-        return departmentService.getDepartment(id);
+    public String getDepartment(@PathVariable String name) {
+        return departmentService.getDepartment(name);
     }
 
     @PostMapping("/add-departments")
-    public Department addDepartment(@RequestBody Department department) {
-        return departmentService.addDepartment(department);
+    public void addDepartment(@RequestBody String name) {
+        departmentService.addDepartment(name);
     }
 
 }

@@ -6,8 +6,10 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import ro.amicus.archive.enums.RoleNames;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -27,7 +29,14 @@ public class UserRole {
     private Privilege privilege;
 
     @Column(name = "name")
-    private String name;
+    private RoleNames roleName;
+
+    @ManyToOne
+    @JoinColumn(name = "department", referencedColumnName = "department_id")
+    private Department department;
+
+    @Column(name = "start_date")
+    private LocalDate startDate;
 
     @UpdateTimestamp
     @Column(name = "last_update_on")

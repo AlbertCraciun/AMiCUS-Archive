@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDTO {
+public class UniversityDTO {
 
+    private String universityName;
     private String cityName;
-    private String countryName;
 
 }

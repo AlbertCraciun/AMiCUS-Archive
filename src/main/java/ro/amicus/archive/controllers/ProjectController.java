@@ -1,11 +1,10 @@
 package ro.amicus.archive.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Project;
+import ro.amicus.archive.dtos.ProjectDTO;
 import ro.amicus.archive.servicies.ProjectService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class ProjectController {
@@ -17,18 +16,28 @@ public class ProjectController {
     }
 
     @GetMapping("/projects")
-    public List<Project> getProjects() {
+    public List<ProjectDTO> getProjects() {
         return projectService.getProjects();
     }
 
-    @GetMapping("/projects/{id}")
-    public Project getProject(@PathVariable UUID id) {
-        return projectService.getProject(id);
+    @GetMapping("/project")
+    public ProjectDTO getProject(@RequestBody ProjectDTO projectDTO) {
+        return projectService.getProject(projectDTO);
     }
 
     @PostMapping("/add-projects")
-    public Project addProject(@RequestBody Project project) {
-        return projectService.addProject(project);
+    public void addProject(@RequestBody ProjectDTO projectDTO) {
+        projectService.addProject(projectDTO);
+    }
+
+    @PutMapping("/update-project")
+    public void updateProject(@RequestBody ProjectDTO projectDTO) {
+        projectService.updateProject(projectDTO);
+    }
+
+    @DeleteMapping("/delete-project")
+    public void deleteProject(@RequestBody ProjectDTO projectDTO) {
+        projectService.deleteProject(projectDTO);
     }
 
 }

@@ -3,7 +3,7 @@ package ro.amicus.archive.servicies;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.amicus.archive.dtos.BranchDTO;
-import ro.amicus.archive.mappers.BranchMapper;
+import ro.amicus.archive.entities.Branch;
 import ro.amicus.archive.repositories.BranchRepository;
 
 import java.util.List;
@@ -13,22 +13,31 @@ import java.util.List;
 public class BranchService {
 
     private final BranchRepository branchRepository;
-    private final BranchMapper branchMapper;
 
-    public BranchService(BranchRepository branchRepository, BranchMapper branchMapper) {
+    public BranchService(BranchRepository branchRepository) {
         this.branchRepository = branchRepository;
-        this.branchMapper = branchMapper;
     }
 
     public List<BranchDTO> getBranches() {
-        return branchMapper.brachListToBranchDTOList(branchRepository.findAll());
+        List<Branch> branches = branchRepository.findAll();
+        return branches.stream().map(branch -> BranchDTO.builder()
+                .cityName(branch.getCity().getCityName())
+                .foundationYear(branch.getFoundationYear())
+                .build()).toList();
     }
 
     public BranchDTO getBranch(String name) {
-        return branchMapper.brachToBranchDTO(branchRepository.findByCity_CityName(name));
+        Branch branch = branchRepository.findByCity_CityName(name);
+        return BranchDTO.builder()
+                .cityName(branch.getCity().getCityName())
+                .foundationYear(branch.getFoundationYear())
+                .build();
     }
 
     public void addBranch(BranchDTO branchDTO) {
-        branchRepository.save(branchMapper.branchDTOToBranch(branchDTO));
+        Branch branch = new Branch();
+        branch.setCity(branchRepository.findByCity_CityName(branchDTO.getCityName()).getCity());
+        branch.setFoundationYear(branchDTO.getFoundationYear());
+        branchRepository.save(branch);
     }
 }

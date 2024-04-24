@@ -1,11 +1,13 @@
 package ro.amicus.archive.controllers;
 
-import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Faculty;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import ro.amicus.archive.dtos.FacultyDTO;
 import ro.amicus.archive.servicies.FacultyService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class FacultyController {
@@ -17,18 +19,18 @@ public class FacultyController {
     }
 
     @GetMapping("/faculties")
-    public List<Faculty> getFaculties() {
+    public List<FacultyDTO> getFaculties() {
         return facultyService.getFaculties();
     }
 
-    @GetMapping("/faculties/{id}")
-    public Faculty getFaculty(@PathVariable UUID id) {
-        return facultyService.getFaculty(id);
+    @GetMapping("/faculty")
+    public FacultyDTO getFaculty(@RequestBody FacultyDTO facultyDTO) {
+        return facultyService.getFaculty(facultyDTO);
     }
 
     @PostMapping("/add-faculties")
-    public Faculty addFaculty(@RequestBody Faculty faculty) {
-        return facultyService.addFaculty(faculty);
+    public void addFaculty(@RequestBody FacultyDTO facultyDTO) {
+        facultyService.addFaculty(facultyDTO);
     }
 
 }

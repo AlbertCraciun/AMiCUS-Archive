@@ -4,14 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.amicus.archive.enums.PrivilegeNames;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDTO {
+public class PrivilegeDTO {
 
-    private String cityName;
-    private String countryName;
+    private PrivilegeNames name;
+    private Integer activeDays;
 
 }

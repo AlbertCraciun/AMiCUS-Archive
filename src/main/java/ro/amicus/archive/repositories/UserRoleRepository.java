@@ -6,4 +6,7 @@ import ro.amicus.archive.entities.UserRole;
 import java.util.UUID;
 
 public interface UserRoleRepository extends JpaRepository<UserRole, UUID> {
+
+    UserRole findByRoleName(String roleName);
+
 }

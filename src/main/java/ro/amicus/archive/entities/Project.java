@@ -8,7 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -41,7 +41,7 @@ public class Project {
     private Integer startYear;
 
     @Column(name = "last_ed_date")
-    private Date lastEdDate;
+    private LocalDate lastEdDate;
 
     @Column(name = "last_ed_participants")
     private Integer lastEdParticipants;

@@ -1,11 +1,11 @@
 package ro.amicus.archive.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Privilege;
+import ro.amicus.archive.dtos.PrivilegeDTO;
 import ro.amicus.archive.servicies.PrivilegeService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class PrivilegeController {
@@ -17,18 +17,20 @@ public class PrivilegeController {
     }
 
     @GetMapping("/privileges")
-    public List<Privilege> getPrivileges() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<PrivilegeDTO> getPrivileges() {
         return privilegeService.getPrivileges();
     }
 
-    @GetMapping("/privileges/{id}")
-    public Privilege getPrivilege(@PathVariable UUID id) {
-        return privilegeService.getPrivilege(id);
+    @GetMapping("/privileges/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public PrivilegeDTO getPrivilege(@PathVariable String name) {
+        return privilegeService.getPrivilege(name);
     }
 
-    @PostMapping("/add-privileges")
-    public Privilege addPrivilege(@RequestBody Privilege privilege) {
-        return privilegeService.addPrivilege(privilege);
+    @PutMapping("/update-privileges/{name}")
+    public void updatePrivilege(@RequestBody Integer activeDays, @PathVariable String name) {
+        privilegeService.updatePrivilege(activeDays, name);
     }
 
 }

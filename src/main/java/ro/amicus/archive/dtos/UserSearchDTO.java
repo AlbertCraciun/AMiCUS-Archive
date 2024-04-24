@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDTO {
+public class UserSearchDTO {
 
-    private String cityName;
-    private String countryName;
+    private String lastName;
+    private String firstName;
+    private String email;
 
 }

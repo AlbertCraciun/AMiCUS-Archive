@@ -6,7 +6,6 @@ import ro.amicus.archive.entities.Department;
 import ro.amicus.archive.repositories.DepartmentRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -18,16 +17,18 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public List<Department> getDepartments() {
-        return departmentRepository.findAll();
+    public List<String> getDepartments() {
+        return departmentRepository.findAll().stream().map(Department::getName).toList();
     }
 
-    public Department getDepartment(UUID id) {
-        return departmentRepository.findById(id).orElse(null);
+    public String getDepartment(String name) {
+        return departmentRepository.findByName(name).getName();
     }
 
-    public Department addDepartment(Department department) {
-        return departmentRepository.save(department);
+    public void addDepartment(String name) {
+        Department department = new Department();
+        department.setName(name);
+        departmentRepository.save(department);
     }
 
 }

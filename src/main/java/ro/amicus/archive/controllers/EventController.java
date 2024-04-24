@@ -1,11 +1,13 @@
 package ro.amicus.archive.controllers;
 
-import org.springframework.web.bind.annotation.*;
-import ro.amicus.archive.entities.Event;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import ro.amicus.archive.dtos.EventDTO;
 import ro.amicus.archive.servicies.EventService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class EventController {
@@ -17,18 +19,18 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public List<Event> getEvents() {
+    public List<EventDTO> getEvents() {
         return eventService.getEvents();
     }
 
-    @GetMapping("/events/{id}")
-    public Event getEvent(@PathVariable UUID id) {
-        return eventService.getEvent(id);
+    @GetMapping("/event")
+    public EventDTO getEvent(@RequestBody EventDTO eventDTO) {
+        return eventService.getEvent(eventDTO);
     }
 
     @PostMapping("/add-events")
-    public Event addEvent(@RequestBody Event event) {
-        return eventService.addEvent(event);
+    public void addEvent(@RequestBody EventDTO eventDTO) {
+        eventService.addEvent(eventDTO);
     }
 
 }

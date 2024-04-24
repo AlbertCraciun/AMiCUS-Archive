@@ -6,4 +6,7 @@ import ro.amicus.archive.entities.Department;
 import java.util.UUID;
 
 public interface DepartmentRepository extends JpaRepository<Department, UUID> {
+
+    Department findByName(String name);
+
 }

@@ -1,8 +1,11 @@
 package ro.amicus.archive.controllers;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ro.amicus.archive.dtos.UserRoleDTO;
+import ro.amicus.archive.servicies.UserRoleService;
 
-import java.util.UUID;
+import java.util.List;
 
 @RestController
 public class UserRoleController {
@@ -14,18 +17,8 @@ public class UserRoleController {
     }
 
     @GetMapping("/user-roles")
-    public String getUserRoles() {
+    public List<UserRoleDTO> getUserRoles() {
         return userRoleService.getUserRoles();
-    }
-
-    @GetMapping("/user-roles/{id}")
-    public String getUserRoleById(@PathVariable UUID id) {
-        return userRoleService.getUserRoleById(id);
-    }
-
-    @PostMapping("/user-roles")
-    public String addUserRole(@RequestBody String userRole) {
-        return userRoleService.addUserRole(userRole);
     }
 
 }

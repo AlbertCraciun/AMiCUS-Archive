@@ -6,7 +6,6 @@ import ro.amicus.archive.entities.Country;
 import ro.amicus.archive.repositories.CountryRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service

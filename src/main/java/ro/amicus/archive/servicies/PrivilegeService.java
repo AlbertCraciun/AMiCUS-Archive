@@ -2,11 +2,12 @@ package ro.amicus.archive.servicies;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ro.amicus.archive.dtos.PrivilegeDTO;
 import ro.amicus.archive.entities.Privilege;
+import ro.amicus.archive.enums.PrivilegeNames;
 import ro.amicus.archive.repositories.PrivilegeRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -18,16 +19,28 @@ public class PrivilegeService {
         this.privilegeRepository = privilegeRepository;
     }
 
-    public List<Privilege> getPrivileges() {
-        return privilegeRepository.findAll();
+    public List<PrivilegeDTO> getPrivileges() {
+        List<Privilege> privileges = privilegeRepository.findAll();
+        return privileges.stream()
+                .map(privilege -> PrivilegeDTO.builder()
+                        .name(privilege.getName())
+                        .activeDays(privilege.getActiveDays())
+                        .build())
+                .toList();
     }
 
-    public Privilege getPrivilege(UUID id) {
-        return privilegeRepository.findById(id).orElse(null);
+    public PrivilegeDTO getPrivilege(String name) {
+        Privilege privilege = privilegeRepository.findByName(PrivilegeNames.valueOf(name));
+        return PrivilegeDTO.builder()
+                .name(privilege.getName())
+                .activeDays(privilege.getActiveDays())
+                .build();
     }
 
-    public Privilege addPrivilege(Privilege privilege) {
-        return privilegeRepository.save(privilege);
+    public void updatePrivilege(Integer activeDays, String name) {
+        Privilege privilege = privilegeRepository.findByName(PrivilegeNames.valueOf(name));
+        privilege.setActiveDays(activeDays);
+        privilegeRepository.save(privilege);
     }
 
 }

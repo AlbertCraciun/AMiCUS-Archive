@@ -1,0 +1,13 @@
+package ro.amicus.archive.enums;
+
+public enum RoleNames {
+    COORDONATOR_DEPARTAMENT,
+    PRESEDINTE_FILIALA,
+    CAPELAN,
+    DIRECTOR_DE_TINERET,
+    MEMBRU,
+    PRESEDINTE_NATIONAL,
+    SECRETAR_DEPARTAMENT,
+    VICEPRESEDINTE,
+    MEMBRU_SENIOR
+}
