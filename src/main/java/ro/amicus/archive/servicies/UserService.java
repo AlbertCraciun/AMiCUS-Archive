@@ -21,17 +21,15 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserRoleRepository userRoleRepository;
     private final BranchRepository branchRepository;
     private final FacultyRepository facultyRepository;
     private final DepartmentRepository departmentRepository;
     private final PrivilegeRepository privilegeRepository;
 
-    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository,
+    public UserService(UserRepository userRepository,
                        BranchRepository branchRepository, FacultyRepository facultyRepository,
                        DepartmentRepository departmentRepository, PrivilegeRepository privilegeRepository) {
         this.userRepository = userRepository;
-        this.userRoleRepository = userRoleRepository;
         this.branchRepository = branchRepository;
         this.facultyRepository = facultyRepository;
         this.departmentRepository = departmentRepository;
