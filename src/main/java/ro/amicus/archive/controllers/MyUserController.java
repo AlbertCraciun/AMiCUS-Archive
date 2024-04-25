@@ -5,47 +5,47 @@ import ro.amicus.archive.dtos.UserRequestDTO;
 import ro.amicus.archive.dtos.UserResponseDTO;
 import ro.amicus.archive.dtos.UserSearchDTO;
 import ro.amicus.archive.dtos.UserUserRoleRequestDTO;
-import ro.amicus.archive.servicies.UserService;
+import ro.amicus.archive.servicies.MyUserService;
 
 import java.util.List;
 
 @RestController
-public class UserController {
+public class MyUserController {
 
-    private final UserService userService;
+    private final MyUserService myUserService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public MyUserController(MyUserService myUserService) {
+        this.myUserService = myUserService;
     }
 
     @GetMapping("/users")
     public List<UserResponseDTO> getUsers() {
-        return userService.getUsers();
+        return myUserService.getUsers();
     }
 
     @GetMapping("/user")
     public UserResponseDTO getUser(@RequestBody UserSearchDTO userSearchDTO) {
-        return userService.getUser(userSearchDTO);
+        return myUserService.getUser(userSearchDTO);
     }
 
-    @PostMapping("/add-users")
+    @PostMapping("/add-user")
     public void addUser(@RequestBody UserRequestDTO userRequestDTO) {
-        userService.addUser(userRequestDTO);
+        myUserService.addUser(userRequestDTO);
     }
 
     @PutMapping("/update-user")
     public void updateUser(@RequestBody UserRequestDTO userRequestDTO) {
-        userService.updateUser(userRequestDTO);
+        myUserService.updateUser(userRequestDTO);
     }
 
     @DeleteMapping("/delete-user")
     public void deleteUser(@RequestBody UserRequestDTO userRequestDTO) {
-        userService.deleteUser(userRequestDTO);
+        myUserService.deleteUser(userRequestDTO);
     }
 
     @PutMapping("/update-user-role")
     public void updateUserRole(@RequestBody UserUserRoleRequestDTO userUserRoleRequestDTO) {
-        userService.updateUserRole(userUserRoleRequestDTO);
+        myUserService.updateUserRole(userUserRoleRequestDTO);
     }
 
 }
