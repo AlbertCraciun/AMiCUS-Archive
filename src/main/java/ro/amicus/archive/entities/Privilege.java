@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import ro.amicus.archive.enums.PrivilegeNames;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -23,9 +22,8 @@ public class Privilege {
     @Column(name = "privilege_id", updatable = false, nullable = false)
     private UUID privilegeId;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "name", nullable = false)
-    private PrivilegeNames name;
+    private String name;
 
     @Column(name = "active_days", nullable = false)
     private Integer activeDays;

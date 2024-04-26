@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.amicus.archive.enums.EventTypes;
 
 import java.time.LocalDate;
 
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 public class EventDTO {
 
     private String name;
-    private EventTypes type;
+    private String type;
     private String cityName;
     private LocalDate startDate;
     private LocalDate endDate;

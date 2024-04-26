@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.amicus.archive.dtos.UserRoleDTO;
 import ro.amicus.archive.entities.UserRole;
-import ro.amicus.archive.repositories.UserRoleRepository;
+import ro.amicus.archive.repositories.MyUserRoleRepository;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import java.util.List;
 @Service
 public class UserRoleService {
 
-    private final UserRoleRepository userRoleRepository;
+    private final MyUserRoleRepository myUserRoleRepository;
 
-    public UserRoleService(UserRoleRepository userRoleRepository) {
-        this.userRoleRepository = userRoleRepository;
+    public UserRoleService(MyUserRoleRepository myUserRoleRepository) {
+        this.myUserRoleRepository = myUserRoleRepository;
     }
 
     public List<UserRoleDTO> getUserRoles() {
-        List<UserRole> userRoles = userRoleRepository.findAll();
+        List<UserRole> userRoles = myUserRoleRepository.findAll();
         return userRoles.stream()
                 .map(userRole -> UserRoleDTO.builder()
                         .roleName(String.valueOf(userRole.getRoleName()))

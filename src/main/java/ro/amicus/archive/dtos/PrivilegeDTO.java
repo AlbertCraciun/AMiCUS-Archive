@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.amicus.archive.enums.PrivilegeNames;
 
 @Data
 @Builder
@@ -12,7 +11,7 @@ import ro.amicus.archive.enums.PrivilegeNames;
 @NoArgsConstructor
 public class PrivilegeDTO {
 
-    private PrivilegeNames name;
+    private String name;
     private Integer activeDays;
 
 }

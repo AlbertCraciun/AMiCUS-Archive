@@ -28,12 +28,11 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/add-user").permitAll();
-                    registry.requestMatchers("/add-country").hasRole("SUPERADMIN");
+                    registry.requestMatchers("/add-user", "/delete-user", "/update-user", "/users", "/user", "/users/**", "/countries", "/add-country").permitAll();
+                    registry.requestMatchers("/add-city").hasRole("SUPERADMIN");
                     registry.requestMatchers("/projects").hasRole("USER");
                     registry.anyRequest().authenticated();
                 })
-                .formLogin(formLogin -> formLogin.permitAll())
                 .build();
     }
 

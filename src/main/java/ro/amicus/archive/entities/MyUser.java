@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import ro.amicus.archive.enums.AcademicStatus;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -51,27 +50,22 @@ public class MyUser {
     @Column(name = "bcd_start_year")
     private Integer bcdStartYear;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "bcd_status")
-    private AcademicStatus bcdStatus;
+    private String bcdStatus;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "md_status")
-    private AcademicStatus mdStatus;
+    private String mdStatus;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "dd_status")
-    private AcademicStatus ddStatus;
+    private String ddStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_role", referencedColumnName = "role_id", nullable = false)
     private UserRole userRole;
 
-    @NonNull
     @Column(name = "approved_role_by")
-    private String approvedRoleBy;
+    private UUID approvedRoleBy;
 
-    @NonNull
     @Column(name = "approved_role_on")
     private LocalDate approvedRoleOn;
 

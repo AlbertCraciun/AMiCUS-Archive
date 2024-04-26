@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.amicus.archive.dtos.PrivilegeDTO;
 import ro.amicus.archive.entities.Privilege;
-import ro.amicus.archive.enums.PrivilegeNames;
 import ro.amicus.archive.repositories.PrivilegeRepository;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class PrivilegeService {
     }
 
     public PrivilegeDTO getPrivilege(String name) {
-        Privilege privilege = privilegeRepository.findByName(PrivilegeNames.valueOf(name));
+        Privilege privilege = privilegeRepository.findByName(name);
         return PrivilegeDTO.builder()
                 .name(privilege.getName())
                 .activeDays(privilege.getActiveDays())
@@ -38,7 +37,7 @@ public class PrivilegeService {
     }
 
     public void updatePrivilege(Integer activeDays, String name) {
-        Privilege privilege = privilegeRepository.findByName(PrivilegeNames.valueOf(name));
+        Privilege privilege = privilegeRepository.findByName(name);
         privilege.setActiveDays(activeDays);
         privilegeRepository.save(privilege);
     }

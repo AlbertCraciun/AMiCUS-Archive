@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import ro.amicus.archive.enums.RoleNames;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -29,7 +28,7 @@ public class UserRole {
     private Privilege privilege;
 
     @Column(name = "name")
-    private RoleNames roleName;
+    private String roleName;
 
     @ManyToOne
     @JoinColumn(name = "department", referencedColumnName = "department_id")
